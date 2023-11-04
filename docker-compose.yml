@@ -1,0 +1,23 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend # Chemin vers le répertoire du frontend
+    ports:
+      - "5174:5174" # Exposez le port du frontend (port 80 ici)
+
+  backend:
+    build:
+      context: ./backend # Chemin vers le répertoire du backend
+    ports:
+      - "3002:3002" # Exposez le port du backend (port 3000 ici)
+    depends_on:
+      - db # Attendez que la base de données démarre
+
+  db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root # Remplacez par votre mot de passe root
+      MYSQL_DATABASE: thebradery # Remplacez par le nom de votre base de données
+    ports:
+      - "3306:3306" # Exposez le port MySQL (facultatif)
