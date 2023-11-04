@@ -19,5 +19,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root # Remplacez par votre mot de passe root
       MYSQL_DATABASE: thebradery # Remplacez par le nom de votre base de données
-    ports:
-      - "3306:3306" # Exposez le port MySQL (facultatif)
+      PORT: 3306 # Port de la base de données
