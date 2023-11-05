@@ -1,0 +1,43 @@
+.container {
+  display: flex;
+  width: 100vw;
+  height: 55px;
+  background-color: #fcf5ee;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}
+
+.containerLeft {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+  padding-left: 20px;
+}
+
+.containerCenter {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.containerRight {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 100%;
+  padding-right: 20px;
+}
+
+.containerRightItems {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 10px;
+}
