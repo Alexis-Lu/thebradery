@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react"
 import "../styles/pages/home.css"
-import requests from "../features/axios"
+import Requests from "../features/axiosRequest"
 import ProductCard from "../components/card"
 import { Grid } from "@mui/material"
 
 export default function Home() {
-  const [datas, setDatas] = useState([])
+  const [datas, setDatas] = useState<object[]>([])
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await requests(
-          "get",
+        const response = await Requests(
+          "GET",
           "http://localhost:3001/api/products",
         )
         setDatas(response)
