@@ -1,63 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("mysql");
-const connection = require("../configs/db.js");
+const productsController = require("../controllers/productsController.js");
 
 //GET ALL PRODUCTS
-router.get("/api/products", function (req, res) {
-  connection.query("SELECT * FROM products", function (error, results, fields) {
-    if (error) throw error;
-    res.send(results);
-  });
-});
+router.get("/api/products", productsController.findAll);
 
 //GET ONE PRODUCTS BY ID
-router.get("/api/products/:id", function (req, res) {
-  connection.query(
-    "SELECT * FROM products WHERE id = ?",
-    [req.params.id],
-    function (error, results) {
-      if (error) throw error;
-      res.send(results);
-    }
-  );
-});
+router.get("/api/products/:id", productsController.findOne);
 
 //PUT ONE PRODUCT BY ID
-router.put("/api/products/:id", function (req, res) {
-  connection.query(
-    "UPDATE products SET name = ?, price = ?, inventory = ? WHERE id = ?",
-    [req.body.name, req.body.price, req.body.inventory, req.params.id],
-    function (error, results) {
-      if (error) throw error;
-      res.send(results);
-    }
-  );
-});
+router.put("/api/products/:id", productsController.update);
 
 //POST ONE PRODUCT
-router.post("/api/products", function (req, res) {
-  console.log(req.body);
-  connection.query(
-    "INSERT INTO products (name, price, inventory) VALUES (?, ?, ?)",
-    [req.body.name, req.body.price, req.body.inventory],
-    function (error, results) {
-      if (error) throw error;
-      res.send(results);
-    }
-  );
-});
+router.post("/api/products", productsController.create);
 
 //DELETE ONE PRODUCT BY ID
-router.delete("/api/products/:id", function (req, res) {
-  connection.query(
-    "DELETE FROM products WHERE id = ?",
-    [req.params.id],
-    function (error, results) {
-      if (error) throw error;
-      res.send(results);
-    }
-  );
-});
+router.delete("/api/products/:id", productsController.delete);
 
 module.exports = router;
