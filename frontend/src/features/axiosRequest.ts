@@ -10,12 +10,12 @@ export default async function Requests(
   try {
     const response = await axios({
       method: method,
-      url: route,
+      url: `http://localhost:3001${route}`,
       data: data,
       headers: headers,
     })
     return response.data
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
