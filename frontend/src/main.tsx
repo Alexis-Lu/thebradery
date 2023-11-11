@@ -10,6 +10,7 @@ import Register from "./pages/register"
 import Commands from "./pages/commands"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import Product from "./pages/product"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <div>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/commands" element={<Commands />} />
+          <Route path="/product/:id" element={<Product />} />
         </Routes>
       </Router>
     </Provider>
