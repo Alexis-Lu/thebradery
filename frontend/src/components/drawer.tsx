@@ -58,13 +58,15 @@ export default function TemporaryDrawer() {
         totalPrice: getTotal(cart),
       })
         .then((res) => {
-          console.log(res.insertId)
           const promises = cart.map((item: any) => {
-            return Requests("POST", "/api/productOrder", {
+            Requests("POST", "/api/productOrder", {
               idOrder: res.insertId,
               idProduct: item.id,
               quantity: item.quantity,
               price: item.price,
+            })
+            Requests("PUT", "/api/products/inventory/" + item.id, {
+              inventory: item.inventory - item.quantity,
             })
           })
           return Promise.all(promises)
