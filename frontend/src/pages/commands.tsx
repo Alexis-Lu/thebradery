@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
 import logo from "../public/the-bradery-logo_v2.svg"
 import Requests from "../features/axiosRequest"
-import { set } from "react-hook-form"
 import {
   Table,
   TableBody,
@@ -65,6 +64,8 @@ export default function Commands() {
       } catch (error) {
         console.log(error)
       }
+    } else {
+      window.location.href = "/login"
     }
   }, [])
 
@@ -123,9 +124,22 @@ export default function Commands() {
                     {commandsProducts[index]
                       ? commandsProducts[index].products.map(
                           (product: any, index: number) => (
-                            <div key={product.id}>
-                              {product.quantity} x {product.id}
+                            <div
+                              key={product.id}
+                              style={{
+                                display: "flex",
+                                flexDirection: "column",
+                              }}
+                            >
+                              {product.quantity} x {product.id}{" "}
+                              {console.log(product)}
                               {product[0] ? product[0].name : "test "}
+                              {product[0].img ? (
+                                <img
+                                  src={product[0].img}
+                                  style={{ width: "50px", height: "auto" }}
+                                ></img>
+                              ) : null}
                             </div>
                           ),
                         )
