@@ -1,39 +1,38 @@
-import React, { useEffect, useState, useMemo } from "react"
+import React from "react"
 import "../styles/pages/home.css"
-import Requests from "../features/axiosRequest"
 import ProductCard from "../components/card"
 import { Grid } from "@mui/material"
-import { toast } from "react-toastify"
+import { useSelector } from "react-redux"
+import { Product } from "../features/product/productSlice"
+import { RootState } from "../app/store"
 
 export default function Home() {
-  const [datas, setDatas] = useState<object[]>([])
+  const datas: Product[] = useSelector(
+    (state: RootState) => state.product.items,
+  )
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await Requests("GET", "/api/products")
-        setDatas(response)
-      } catch (error) {
-        toast.error("Error fetching data:")
-      }
-    }
-
-    fetchData()
-  }, [])
+  function handleClickProduct(id: number) {
+    window.location.href = `/product/${id}`
+  }
 
   return (
     <div className="containerHome">
       <Grid container spacing={6}>
-        {datas ? (
+        {datas && datas.length > 0 ? (
           datas.map((data: any) => (
             <Grid item xs={12} sm={6} md={3} key={data.id}>
-              <ProductCard
-                id={data.id}
-                name={data.name}
-                price={data.price}
-                inventory={data.inventory}
-                img={data.img}
-              />
+              <div
+                style={{ cursor: "pointer" }}
+                onClick={() => handleClickProduct(data.id)}
+              >
+                <ProductCard
+                  id={data.id}
+                  name={data.name}
+                  price={data.price}
+                  inventory={data.inventory}
+                  img={data.img}
+                />
+              </div>
             </Grid>
           ))
         ) : (
