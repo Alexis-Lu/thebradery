@@ -9,7 +9,7 @@ app.use(express.json());
 const productsRoutes = require("./routes/products.js");
 const userRoutes = require("./routes/users.js");
 const productOrderRoutes = require("./routes/productOrder.js");
-const orderRoutes = require("./routes/order.js");
+const orderRoutes = require("./routes/orders.js");
 app.use(userRoutes, productsRoutes, productOrderRoutes, orderRoutes);
 
 app.listen(3001, () => {
