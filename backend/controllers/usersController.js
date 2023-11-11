@@ -3,6 +3,7 @@ const mysql = require("mysql");
 const bcrypt = require("bcrypt");
 const router = express.Router();
 const connection = require("../configs/db.js");
+const e = require("express");
 
 exports.create = (req, res) => {
   const { firstname, lastname, email, password, address } = req.body;
@@ -21,7 +22,6 @@ exports.create = (req, res) => {
 
 exports.login = (req, res) => {
   const { email, password } = req.body;
-
   connection.query(
     "SELECT * FROM Users WHERE email = ?",
     [email],

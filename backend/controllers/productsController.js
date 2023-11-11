@@ -31,11 +31,23 @@ exports.update = (req, res) => {
   );
 };
 
-exports.create = (req, res) => {
-  const { name, description, price, inventory } = req.body;
+exports.updateInventory = (req, res) => {
+  const { inventory } = req.body;
   connection.query(
-    "INSERT INTO Products (name, description, price, inventory) VALUES (?, ? ,? ,?)",
-    [name, description, price, inventory],
+    "UPDATE Products SET inventory = ? WHERE id = ?",
+    [inventory, req.params.id],
+    function (error, results) {
+      if (error) throw error;
+      res.send(results);
+    }
+  );
+};
+
+exports.create = (req, res) => {
+  const { name, price, inventory } = req.body;
+  connection.query(
+    "INSERT INTO Products (name, price, inventory) VALUES (? ,? ,?)",
+    [name, price, inventory],
     function (error, results) {
       if (error) throw error;
       res.send(results);

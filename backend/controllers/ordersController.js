@@ -43,10 +43,10 @@ exports.update = (req, res) => {
 };
 
 exports.updateAddress = (req, res) => {
-  const { address } = req.body;
+  const { addressOrder } = req.body;
   connection.query(
     "UPDATE Orders SET address = ? WHERE id = ?",
-    [address, req.params.id],
+    [addressOrder, req.params.id],
     function (error, results) {
       if (error) throw error;
       res.send(results);
@@ -55,10 +55,11 @@ exports.updateAddress = (req, res) => {
 };
 
 exports.create = (req, res) => {
-  const { userId, address, status } = req.body;
+  const { userId, addressOrder, status, totalPrice } = req.body;
+  const dateOrder = new Date();
   connection.query(
-    "INSERT INTO Orders (userId, address, status) VALUES (?, ? ,?)",
-    [userId, address, status],
+    "INSERT INTO Orders (dateOrder, status, addressOrder, userId, totalPrice) VALUES (?, ? ,?, ?, ?)",
+    [dateOrder, status, addressOrder, userId, totalPrice],
     function (error, results) {
       if (error) throw error;
       res.send(results);

@@ -24,7 +24,7 @@ exports.findOne = (req, res) => {
 
 exports.findAllByOrder = (req, res) => {
   connection.query(
-    "SELECT * FROM ProductOrder WHERE orderId = ?",
+    "SELECT * FROM ProductOrder WHERE idOrder = ?",
     [req.params.id],
     function (error, results) {
       if (error) throw error;
@@ -48,7 +48,7 @@ exports.update = (req, res) => {
 exports.create = (req, res) => {
   const { idOrder, idProduct, quantity, price } = req.body;
   connection.query(
-    "INSERT INTO ProductOrder (orderId, productId, quantity, price) VALUES (?, ? ,? ,?)",
+    "INSERT INTO ProductOrder (idOrder, idProduct, quantity, price) VALUES (?, ? ,? ,?)",
     [idOrder, idProduct, quantity, price],
     function (error, results) {
       if (error) throw error;
