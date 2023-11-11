@@ -11,6 +11,9 @@ router.get("/api/products/:id", productsController.findOne);
 //PUT ONE PRODUCT BY ID
 router.put("/api/products/:id", productsController.update);
 
+//PUT INVENTORY PRODUCT BY ID
+router.put("/api/products/inventory/:id", productsController.updateInventory);
+
 //POST ONE PRODUCT
 router.post("/api/products", productsController.create);
 
