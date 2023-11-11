@@ -4,6 +4,12 @@ import logo from "../public/the-bradery-logo_v2.svg"
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined"
 import TemporaryDrawer from "./drawer"
 import PopoverComponent from "./popover"
+import SearchPopover from "./searchPopover"
+import { useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
+import { ThunkDispatch } from "@reduxjs/toolkit"
+import { RootState } from "../app/store"
+import { getAllProducts } from "../features/product/productSlice"
 
 interface userInfos {
   firstname: string
@@ -15,9 +21,13 @@ interface userInfos {
 
 export default function Header() {
   const [userInfos, setUserInfos] = useState<userInfos[] | null>(null)
+  const datas = useSelector((state: any) => state.product.items)
+  const dispatch: ThunkDispatch<RootState, any, any> = useDispatch()
   useEffect(() => {
+    if (!datas.length) {
+      dispatch(getAllProducts())
+    }
     const userInfosString = localStorage.getItem("userInfos")
-    console.log(userInfosString)
     if (userInfosString) {
       const userDatas = JSON.parse(userInfosString)
       setUserInfos(userDatas)
@@ -27,8 +37,7 @@ export default function Header() {
   return (
     <div className="container">
       <div className="containerLeft">
-        <SearchOutlinedIcon />
-        // TODO: finir search <input type="text" placeholder="Search" />
+        <SearchPopover />
       </div>
       <div className="containerCenter">
         <img
