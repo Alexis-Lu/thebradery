@@ -1,31 +1,59 @@
-# test technique thebradery
+# Test Technique TheBradery
 
-# Instructions : 
+## Instructions
 
-1 - Cloner le dépôt:
-- git clone https://github.com/Alexis-Lu/thebradery.git
-- cd thebradery
+### 1 - Cloner le Dépôt
 
-2 - Installer les dépendences.
-- cd frontend
-- npm i
-- cd ../backend
-- npm i
+```bash
+git clone https://github.com/Alexis-Lu/thebradery.git
+cd thebradery
+```
 
-3 - Créer la base de données
-J'ai fourni un fichier "thebradery.sql" avec toutes les commandes pour structurer et remplir la base de données.
+### 2 - Installer les Dépendances
 
-4 - Lancer les applications : 
-Frontend : 
-Le fichier Dockerfile fonctionne. Vous pouvez vous en servir pour lancer l'application :
-- docker buld -t frontend .
-- docker run -p 8080:8080 frontend
-Ou tout simplement avec la commande :
-- npm run dev
+#### Frontend
 
-Backend : 
-Le fichier Dockerfile ne fonctionne pas correctement. Je n'arrive pas à le connecter à mysql, le serveur crash quand il tente la connexion.
-Vous pouvez lancer le serveur avec la commande :
-- npm start
+```bash
+cd frontend
+npm install
+```
 
-J'ai essayer de faire un docker-compose pour lancer toute la pile en une seule fois sans succès.
+#### Backend
+
+```bash
+cd backend
+npm install
+```
+
+### 3 - Créer la Base de Données
+
+Utilisez le fichier "thebradery.sql" fourni pour structurer et remplir la base de données.
+
+### 4 - Lancer les Applications
+
+#### Frontend
+
+Le fichier Dockerfile fonctionne. Vous pouvez l'utiliser pour lancer l'application :
+
+```bash
+docker build -t frontend .
+docker run -p 8080:8080 frontend
+```
+
+Ou simplement avec la commande :
+
+```bash
+npm run dev
+```
+
+#### Backend
+
+Le fichier Dockerfile ne fonctionne pas correctement. Pour lancer le serveur, utilisez la commande :
+
+```bash
+npm start
+```
+
+**Note :** J'ai essayé de créer un docker-compose pour lancer toute la pile en une seule fois, mais cela n'a pas été fructueux.
+
+---
