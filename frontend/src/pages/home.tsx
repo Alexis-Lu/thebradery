@@ -11,20 +11,13 @@ export default function Home() {
     (state: RootState) => state.product.items,
   )
 
-  function handleClickProduct(id: number) {
-    window.location.href = `/product/${id}`
-  }
-
   return (
     <div className="containerHome">
       <Grid container spacing={6}>
         {datas && datas.length > 0 ? (
           datas.map((data: any) => (
             <Grid item xs={12} sm={6} md={3} key={data.id}>
-              <div
-                style={{ cursor: "pointer" }}
-                onClick={() => handleClickProduct(data.id)}
-              >
+              <div>
                 <ProductCard
                   id={data.id}
                   name={data.name}
